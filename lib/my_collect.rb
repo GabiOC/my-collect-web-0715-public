@@ -2,11 +2,11 @@ def my_collect(languages)
 	i = 0
 	arr = []
 
-	while i < languages.length do
-		arr << languages[i].upcase
-		i += 1
+	languages.each do |language|
+		block_value = yield language if block_given?
+		arr << block_value
 	end
 	arr
 end
 
-# my_collect(languages) { arr << languages[i].upcase }
+my_collect(['ruby', 'javascript', 'python', 'objective-c']) { |language| language.upcase }
